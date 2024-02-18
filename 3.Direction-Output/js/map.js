@@ -4,14 +4,16 @@ var mapMain;
 require([
         "esri/map",
         "esri/tasks/PrintTemplate",
-
+        "esri/dijit/Directions",
+     
         "dojo/parser",
         "dojo/ready",
 
         "dijit/layout/BorderContainer",
         "dijit/layout/ContentPane"],
-    function (Map, PrintTemplate,
-              parser, ready,
+    
+        function (Map, PrintTemplate, Directions,
+                 parser, ready,
               BorderContainer, ContentPane) {
 // @formatter:on
 
@@ -71,6 +73,13 @@ require([
             /*
              * Step: Add the Directions widget
              */
+            var dijitDirections = new Directions({
+                map: mapMain,
+                routeTaskUrl: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World"
+                
+            }, "divDirections");
+            dijitDirections.startup();   
+});
 
             /*
              * Step: Add the Print widget
@@ -79,4 +88,4 @@ require([
 
         });
 
-    });
+    ;
